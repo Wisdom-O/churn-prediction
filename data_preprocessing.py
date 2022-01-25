@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Contains
-a preprocessing class for selecting columns that are below a correlation thresholds
+a preprocessing class for selecting columns that are below specified correlation thresholds
 a preprocessing class that drops unwanted columns
 """
 from sklearn.base import TransformerMixin, BaseEstimator
