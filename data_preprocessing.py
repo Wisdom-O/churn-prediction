@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jan 12 17:18:56 2022
-
-@author: lorwi
+Contains
+a preprocessing class for selecting columns that are below a correlation thresholds
+a preprocessing class that drops unwanted columns
 """
 from sklearn.base import TransformerMixin, BaseEstimator
 import numpy as np
@@ -12,16 +12,16 @@ class SelectedColumns(TransformerMixin, BaseEstimator):
     """
     performs data preprocessing by selecting columns that do not meet the threshold
     correlation thresholds. ie ignores/removes columns that have correlation coefficient
-    values above the specified upper limit threshold and below the specified lower limit 
+    values above the specified upper limit threshold and below the specified lower limit
     correlation coefficient threshold.
     """
-    
+
     def __init__(self, upper_limit, lower_limit=None, target=None, collist=[]):
         self.limit = upper_limit
         self.lower = lower_limit
         self.cols = collist
         self.target = target
-        
+
     def fit(self, X):
         corr_df = X.corr()
         columns = np.full(corr_df.shape[0], True, dtype=bool)
@@ -39,7 +39,7 @@ class SelectedColumns(TransformerMixin, BaseEstimator):
         return self
     def transform(self, X):
         return X[self.cols]
-    
+
 class Drop_cols(TransformerMixin, BaseEstimator):
     """
     drops specified columns
